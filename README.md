@@ -1,4 +1,4 @@
-# -Closing-price-prediction-of-Jakarta-Composite-Index-using-Autoencoders-GRU-model
+# Closing price prediction of Jakarta Composite Index using Autoencoders and GRU model
 
 ### Homepage
 ![](screenshots/home.PNG)
