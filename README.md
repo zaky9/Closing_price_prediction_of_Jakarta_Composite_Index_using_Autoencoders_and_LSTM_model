@@ -37,6 +37,7 @@ Figure 2: LSTM cell [[ref]](https://medium.com/@kangeugine/long-short-term-memor
 
 Now, once we know what are Autoencoders and LSTM is and why it is used, we can finally start the analysis. 
 1. First of we will download the dataset from yahoo finance. We are using the historical data ( Open price, High Price, Low price, Close price, Adj Close and Volume) of Jakarta Composite Index (JKSE) from 01/01/2003 to 01/09/2022 (dd/mm/yyyy). Once we download the dataset, we can convert from csv to panda daraframe and make the Date as the index.
+
 2. Check for the outliars by displaying all of the features and observe the statistical data from univeriate analysis.
 <img width="500" alt="rnn_step_forward" 
 src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/86399dab040d534406282c4430807fd6e8afe40f/Images/Picture1.png">
