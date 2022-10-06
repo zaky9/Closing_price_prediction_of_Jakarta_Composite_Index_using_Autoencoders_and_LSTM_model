@@ -7,11 +7,11 @@ There are many technical indicators that can help us to make better decisions on
 
 In this study, I'm going to use 37 of technical indicators with an additional of 5 historical data to help predict the closing price of JKSE. Now you may ask,
   
-* *"Wouldn't that be too many features and may create dimensionality problems?"* *
+"Wouldn't that be too many features and may create dimensionality problems?"
  
  and I'd say
   
-* *"yes! And that's where Autoencoder comes in"* *
+"yes! And that's where Autoencoder comes in"
 </p>
 
 ## Why are we using Autoencoders?
@@ -98,14 +98,17 @@ How about Decoder layers? Why are we not using it?
 Decoder layers are commonly represented as a mirror with the encoder layers. Meaning the input and the output must have a similar number of dimensions. It is a common practice to have a mirror-like shape (E.g. Encoder 1 = Decoder 2, Encoder 2 = Decoder 1). Hence, if you look at the shape between encoder and decoder are similar. Additionally, the output of the decoders layer are commonly used to compress the image or want to have identical representative features as the input. However, since our objective is to reduce the dimension, we only extract the attributes from the Bottleneck layer that have decreased from 42 to 4. </p>
 
 
+7. Observing the train loss and the val loss (Figure 9), they shows a good fit, where both loss decrease and stabilize at similar epoch (at epoch 26). 
 
-<p align="justify">
-7. Observing the train loss and the val loss (Figure 9), they shows a good fit, where both loss decrease and stabilize at similar epoch (at epoch 23). 
-
-Now let's evaluate the new attributes. I have renamed the newly generated attributes into attributes 1 to 4. Shown in Figure 10 is the Pearson correlation. The result demonstrates that attributes 3 and 4 are very well correlated with the closing price, and by plotting the line graph between close, attribute 3 and attribute 4, we can see the monotonic trend between them (Figure 11). Since attributes 1 and 2 could not represent the features very well, let's remove them and only use attributes 3 and 4 to predict the closing price. </p>
 
 <img width="300" alt="Autoencoders loss" src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/2d69aa78b439af8875089fd9379a818dbeec52a1/Images/autoencoder_loss.png">
+
 Figure 9: Loss vs epoch 
+
+<p align="justify">
+Now let's evaluate the new attributes. I have renamed the newly generated attributes into attributes 1 to 4. Shown in Figure 10 is the Pearson correlation. The result demonstrates that attributes 3 and 4 are very well correlated with the closing price, and by plotting the line graph between close, attribute 3 and attribute 4, we can see the monotonic trend between them (Figure 11). Since attributes 1 and 2 could not represent the features very well, let's remove them and only use attributes 3 and 4 to predict the closing price. </p>
+
+
 
 <img width="300" alt="The model summary for Autoencoders" src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/871414a0151733eba8aee92ef9e884516c102a53/Images/Picture5.png">
 
@@ -123,14 +126,31 @@ Figure 11: Line plot between Close, attribute 3 and attribute 4
 
 Figure 12: plot between the training and testing dataset
 
-9. Now lets developed the LSTM model. In LSTM, it requires three dimension of input. These includes number of batch size, timestep and number of features. This is because, LSTM  learns from the previous observation and following observation, therefore we need to rearrange the data into 3 dimension. Luckly, Tensorflow has timeseries generator module, where we need to specify the window length, sampling rate and the batch size. You can read the documentation [here](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/TimeseriesGenerator)
+9. Now let's developed the LSTM model. LSTM requires three dimensions of input. These include; the number of batch sizes, timestep and features. In this study, Im using TensorFlow's time-series generator module, where we need to specify the window length, sampling rate and batch size. You can read the documentation [here](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/TimeseriesGenerator)
 
+12. Shown in Figure 13 is the model summary of the LSTM model. Im using two layer of LSTM with the neuron of 350 and 300, respectively. Other hyper-parameters include:
 
-12. Shown in Figure 13 is the model summary of the LSTM model. Im using two layer of LSTM with the neuron of 350 and 300. For the loss function, Im using mean squared error or mse the most common regression 
+* Optimizer = Adam
+* Learning rate = 0.001 (with callback of ReduceLROnPlateau)
+* Epoch = 1000 (with callback of Earlystopping)
 
 <img width="500" alt="Line plot " src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/791ed90fe0833711690eb8d2c3cdd44dac922573/Images/LSTM%20model.png">
 
+Figure 13: Model summary of the LSTM model
 
+Now, observing the loss vs epoch, we can see that the validation loss was initially overfitting, but in the later epoch, it started to converge with the training loss at around 25th epoch.
+
+<img width="500" alt="Line plot " src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/103c670d079fa99588f64d9d3a4ee8dd0c7680e3/Images/Loss_LSTM.png">
+
+Figure 14: train loss vs Val loss
+
+Let's observe the prediction's accuracy. Shown in Figure 15 is the line plot between the predicted and actual closing price. We can see that the predicted close price can follow closely with the actual Closing price. Looking at the accuracy scores, we get a decent score, where R^2 of 0.97, MAE of 52.8 and RMSE of 71. 
+
+<img width="500" alt="true_close_vs_close_pred " src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/d405b769db09d7c2c9f14c9418ae1164dd74797e/Images/Picture7.png">
+
+Figure 15: Comparing the true close vs. close prediction at test dataset
+
+So thats it!. I realy do hope that you enjoy and learnt something from this repo!. Im trying to make more this kin of repo and also youtube video. So stay tuned!
 ### Result page
 ![](screenshots/result.PNG)
 
