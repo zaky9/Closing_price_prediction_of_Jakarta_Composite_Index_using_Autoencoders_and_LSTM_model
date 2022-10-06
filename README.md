@@ -128,13 +128,13 @@ Figure 12: plot between the training and testing dataset
 
 9. Now let's developed the LSTM model. LSTM requires three dimensions of input. These include; the number of batch sizes, timestep and features. In this study, Im using TensorFlow's time-series generator module, where we need to specify the window length, sampling rate and batch size. You can read the documentation [here](https://www.tensorflow.org/api_docs/python/tf/keras/preprocessing/sequence/TimeseriesGenerator)
 
-12. Shown in Figure 13 is the model summary of the LSTM model. Im using two layer of LSTM with the neuron of 350 and 300, respectively. Other hyper-parameters include:
+12. Shown in Figure 13 is the model summary of the LSTM model. Im using two layer of LSTM with the neuron of 400 and 350, respectively. Other hyper-parameters include:
 
 * Optimizer = Adam
 * Learning rate = 0.001 (with callback of ReduceLROnPlateau)
 * Epoch = 1000 (with callback of Earlystopping)
 
-<img width="500" alt="Line plot " src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/791ed90fe0833711690eb8d2c3cdd44dac922573/Images/LSTM%20model.png">
+<img width="500" alt="Line plot " src="https://github.com/zaky9/Closing_price_prediction_of_Jakarta_Composite_Index_using_Autoencoders_and_LSTM_model/blob/0922812d69d288f76d6bfe4b0d48d9c0b1f991db/Images/LSTM%20model.png">
 
 Figure 13: Model summary of the LSTM model
 
