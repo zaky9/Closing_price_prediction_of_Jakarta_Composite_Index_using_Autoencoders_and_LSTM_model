@@ -150,8 +150,7 @@ Let's observe the prediction's accuracy. Shown in Figure 15 is the line plot bet
 
 Figure 15: Comparing the true close vs. close prediction at test dataset
 
-So thats it!. I realy do hope that you enjoy and learnt something from this repo!. Im trying to make more this kin of repo and also youtube video. So stay tuned!
-### Result page
+So thats it!. I realy do hope that you enjoy and learnt something from this repo!. Im trying to make more this kin of repo and also youtube video. So stay tuned!### Result page
 ![](screenshots/result.PNG)
 
 ## Refferences
